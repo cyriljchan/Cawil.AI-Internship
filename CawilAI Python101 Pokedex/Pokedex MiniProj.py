@@ -1,5 +1,7 @@
 import pandas as pd
-import glob
+import matplotlib.pyplot as plt
+import matplotlib.image as mpllimg
+import numpy as np
 
 ##############################
 #     Print Pokemon Data     #
@@ -14,9 +16,15 @@ def pokeData(boolsel):
           "Weight(kg): ", boolsel.loc[:,"weight_kg"].values, "\n")
     
     ##############################
-    #       For image index      #
+    #          For image         #
     ##############################
-    index = boolsel.index
+    pokearr = boolsel.loc[:,"pokedex_number"].values
+    pokenum = np.array2string(pokearr[0])
+    
+    img=mpllimg.imread('C:/Users/cyril/Desktop/HACKATHONS/CAWIL.AI INTERNSHIP/Pokedex MiniProj/pokemon_jpg/'+str(pokenum)+'.jpg')
+    img_plot = plt.imshow(img)
+    plt.axis("off")
+    plt.show()
 
 ##############################
 #             Main           #
@@ -33,6 +41,7 @@ while search != "Z":
     print("If you want to look at the entire Pokedex, type 'Y'")
     print("To exit, type 'Z'")
     search = str.upper(input("Please select your choice: "))
+    print(" ")
     
     ##############################
     #       By Pokemon Name      #
